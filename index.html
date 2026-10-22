@@ -1,20 +1,670 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>UAE Heat Safety Advisory</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UAE Heat Safety & Occupational Health Advisory</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body { font-family: Arial, sans-serif; background:#fff8e1; color:#333; max-width:700px; margin:40px auto; padding:0 20px; }
-    h1 { color:#d84315; }
-    .tip { background:#fff; border-left:4px solid #d84315; padding:12px 16px; margin:12px 0; }
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.6); }
+    .pulse-glow { animation: pulseGlow 2s infinite; }
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(225, 29, 72, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+    }
   </style>
 </head>
-<body>
-  <h1>UAE Heat Safety Advisory</h1>
-  <p>Extreme heat conditions are active across the UAE. Follow these safety guidelines:</p>
-  <div class="tip"><strong>Midday work ban:</strong> Outdoor labor is prohibited 12:30 PM – 3:00 PM.</div>
-  <div class="tip"><strong>Hydration:</strong> Drink water regularly, even if not thirsty.</div>
-  <div class="tip"><strong>Shade:</strong> Avoid direct sun exposure during peak hours.</div>
-  <div class="tip"><strong>Watch for symptoms:</strong> Dizziness, nausea, or confusion may indicate heat exhaustion — stop activity immediately.</div>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- TOP OFFICIAL GOVT BAR -->
+  <div class="bg-slate-950 text-xs py-2 px-4 border-b border-slate-800 text-slate-400">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+      <div class="flex items-center space-x-3">
+        <span class="flex items-center gap-1.5 font-medium text-emerald-400">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+          Official Portal Guidelines
+        </span>
+        <span class="hidden md:inline text-slate-600">|</span>
+        <span class="hidden md:inline">Enforced by Ministry of Human Resources & Emiratisation (MoHRE)</span>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a href="https://www.mohre.gov.ae" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition flex items-center gap-1">
+          <i class="fa-solid fa-building-columns text-slate-500"></i> MoHRE Official <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+        <a href="https://www.mohap.gov.ae" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition flex items-center gap-1">
+          <i class="fa-solid fa-heart-pulse text-slate-500"></i> MoHAP Health <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+        <a href="https://www.ncm.ae" target="_blank" rel="noopener noreferrer" class="hover:text-amber-400 transition flex items-center gap-1">
+          <i class="fa-solid fa-cloud-sun text-slate-500"></i> NCM Weather <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN NAVIGATION -->
+  <nav class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <div class="flex items-center space-x-3">
+          <div class="p-2.5 bg-gradient-to-tr from-amber-500 to-rose-600 rounded-xl shadow-lg shadow-amber-500/20 text-slate-950 font-black text-xl">
+            <i class="fa-solid fa-sun text-slate-950"></i>
+          </div>
+          <div>
+            <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-amber-400 via-orange-400 to-rose-500 bg-clip-text text-transparent">
+              UAE HEAT SAFETY
+            </span>
+            <span class="block text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+              Occupational Health & Climate Advisory
+            </span>
+          </div>
+        </div>
+
+        <div class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+          <a href="#ban-tracker" class="hover:text-amber-400 transition">Midday Work Ban</a>
+          <a href="#calculator" class="hover:text-amber-400 transition">Heat Index Calc</a>
+          <a href="#hydration" class="hover:text-amber-400 transition">Hydration Log</a>
+          <a href="#first-aid" class="hover:text-amber-400 transition">Symptom Checker</a>
+          <a href="#portals" class="hover:text-amber-400 transition">Govt Portals</a>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <button onclick="toggleSOSModal()" class="pulse-glow bg-rose-600 hover:bg-rose-500 text-white px-4 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 shadow-lg shadow-rose-600/30 transition cursor-pointer">
+            <i class="fa-solid fa-phone-flip animate-bounce"></i>
+            <span>SOS / Emergency</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO & LIVE METRICS -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 flex-grow">
+
+    <!-- ALERT BANNER -->
+    <div id="ban-tracker" class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-800 via-slate-850 to-slate-900 border border-slate-700/60 p-6 md:p-8 shadow-2xl">
+      <div class="absolute -right-10 -bottom-10 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center relative z-10">
+        <div class="lg:col-span-2 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold">
+            <i class="fa-solid fa-shield-halved"></i> Mandatory Federal Regulation (MoHRE Law)
+          </div>
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            UAE Midday Outdoor Work Ban Advisory
+          </h1>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+            Under UAE Labor Law, outdoor activities under direct sunlight are strictly prohibited between <span class="text-amber-400 font-semibold">12:30 PM and 3:00 PM</span> during summer months (June 15 – September 15). Employers must provide shaded rest areas and cold electrolyte drinks.
+          </p>
+
+          <div class="flex flex-wrap gap-3 pt-2">
+            <a href="https://www.mohre.gov.ae/en/laws-and-regulations/ministerial-decisions.aspx" target="_blank" rel="noopener noreferrer" class="bg-slate-700/80 hover:bg-slate-700 text-white px-4 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-2">
+              <i class="fa-solid fa-file-contract text-amber-400"></i> MoHRE Regulation Manual <i class="fa-solid fa-external-link text-[10px]"></i>
+            </a>
+            <button onclick="openReportModal()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 shadow-lg shadow-amber-500/20">
+              <i class="fa-solid fa-bullhorn"></i> Report Work Violation
+            </button>
+          </div>
+        </div>
+
+        <!-- LIVE COUNTDOWN STATUS -->
+        <div class="bg-slate-900/80 border border-slate-700/80 p-6 rounded-2xl text-center space-y-3 backdrop-blur-md">
+          <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Midday Ban Real-Time Status</span>
+          
+          <div id="ban-status-badge" class="py-2 px-4 rounded-xl text-sm font-black flex items-center justify-center gap-2 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+            <i class="fa-solid fa-circle-check"></i> Outdoor Work Permitted
+          </div>
+
+          <div class="space-y-1">
+            <div id="ban-countdown-timer" class="text-2xl sm:text-3xl font-extrabold text-amber-400 tracking-mono">
+              00h 00m 00s
+            </div>
+            <p id="ban-timer-label" class="text-[11px] text-slate-400">Until Next Mandatory Rest Period (12:30 PM)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DYNAMIC HEAT INDEX CALCULATOR & EMIRATE SELECTOR -->
+    <div id="calculator" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- CALCULATOR CONTROLS -->
+      <div class="lg:col-span-2 bg-slate-800/60 border border-slate-700/60 rounded-3xl p-6 sm:p-8 space-y-6">
+        <div class="flex flex-wrap justify-between items-center gap-4 border-b border-slate-700/60 pb-4">
+          <div>
+            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-calculator text-amber-400"></i> Dynamic Heat Index & Risk Calculator
+            </h2>
+            <p class="text-xs text-slate-400">Simulate ambient weather or select live data feeds from NCM UAE.</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <label class="text-xs text-slate-400">Emirate:</label>
+            <select id="emirate-select" onchange="updateEmiratePreset()" class="bg-slate-900 border border-slate-700 text-xs rounded-xl px-3 py-2 text-amber-400 font-semibold outline-none focus:border-amber-400">
+              <option value="dubai">Dubai (38°C, 55%)</option>
+              <option value="abudhabi">Abu Dhabi (40°C, 60%)</option>
+              <option value="sharjah">Sharjah (39°C, 65%)</option>
+              <option value="alain">Al Ain (44°C, 30%)</option>
+              <option value="custom" selected>Custom Simulation</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- TEMPERATURE SLIDER -->
+          <div class="space-y-3 bg-slate-900/50 p-4 rounded-2xl border border-slate-700/40">
+            <div class="flex justify-between items-center">
+              <label class="text-xs font-semibold text-slate-300">Air Temperature (°C)</label>
+              <span id="temp-val" class="text-lg font-bold text-amber-400">38°C</span>
+            </div>
+            <input type="range" id="temp-input" min="25" max="55" value="38" oninput="calculateHeatIndex()" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-amber-500">
+            <div class="flex justify-between text-[10px] text-slate-500">
+              <span>25°C</span>
+              <span>40°C</span>
+              <span>55°C</span>
+            </div>
+          </div>
+
+          <!-- HUMIDITY SLIDER -->
+          <div class="space-y-3 bg-slate-900/50 p-4 rounded-2xl border border-slate-700/40">
+            <div class="flex justify-between items-center">
+              <label class="text-xs font-semibold text-slate-300">Relative Humidity (%)</label>
+              <span id="humidity-val" class="text-lg font-bold text-sky-400">55%</span>
+            </div>
+            <input type="range" id="humidity-input" min="10" max="100" value="55" oninput="calculateHeatIndex()" class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-sky-500">
+            <div class="flex justify-between text-[10px] text-slate-500">
+              <span>10%</span>
+              <span>55%</span>
+              <span>100%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPUTED METRICS -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-700/60 text-center space-y-1">
+            <span class="text-[11px] text-slate-400 font-semibold uppercase">Apparent Heat Index</span>
+            <div id="computed-heat-index" class="text-3xl font-black text-rose-500">46°C</div>
+            <span class="text-[10px] text-slate-500">"Feels Like" Temperature</span>
+          </div>
+
+          <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-700/60 text-center space-y-1">
+            <span class="text-[11px] text-slate-400 font-semibold uppercase">Risk Category</span>
+            <div id="risk-category-badge" class="text-sm font-bold py-1 px-3 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30 inline-block">
+              DANGER
+            </div>
+            <p id="risk-desc" class="text-[10px] text-slate-400">Heat cramps or exhaustion likely</p>
+          </div>
+
+          <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-700/60 text-center space-y-1">
+            <span class="text-[11px] text-slate-400 font-semibold uppercase">Work-Rest Cycle</span>
+            <div id="work-rest-ratio" class="text-lg font-bold text-amber-400">45m Work / 15m Rest</div>
+            <span class="text-[10px] text-slate-500">Recommended per hour</span>
+          </div>
+        </div>
+
+        <div class="text-right">
+          <a href="https://www.ncm.ae" target="_blank" rel="noopener noreferrer" class="text-xs text-amber-400 hover:underline inline-flex items-center gap-1">
+            Check official live forecast on National Center of Meteorology (NCM) <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- HYDRATION GOAL CALCULATOR & TRACKER -->
+      <div id="hydration" class="bg-slate-800/60 border border-slate-700/60 rounded-3xl p-6 sm:p-8 space-y-6 flex flex-col justify-between">
+        <div>
+          <h2 class="text-xl font-bold text-white flex items-center gap-2 border-b border-slate-700/60 pb-4">
+            <i class="fa-solid fa-glass-water text-sky-400"></i> Interactive Water Tracker
+          </h2>
+          <p class="text-xs text-slate-400 mt-2">Personalized fluid intake standard under UAE extreme summer heat guidelines.</p>
+
+          <div class="mt-4 space-y-4">
+            <div class="flex justify-between items-center bg-slate-900/50 p-3 rounded-xl border border-slate-700/40">
+              <label class="text-xs text-slate-300">Body Weight:</label>
+              <div class="flex items-center gap-2">
+                <input type="number" id="user-weight" value="70" onchange="updateHydrationTarget()" class="w-16 bg-slate-800 border border-slate-600 rounded-lg text-center text-sm font-bold text-white py-1 outline-none">
+                <span class="text-xs text-slate-400">kg</span>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <div class="flex justify-between text-xs font-semibold">
+                <span class="text-slate-300">Today's Progress:</span>
+                <span id="hydration-count-text" class="text-sky-400">1250 / 3500 ml</span>
+              </div>
+              <div class="w-full bg-slate-900 rounded-full h-3 overflow-hidden border border-slate-700">
+                <div id="hydration-progress-bar" class="bg-gradient-to-r from-sky-500 to-blue-600 h-full w-[35%] transition-all duration-300"></div>
+              </div>
+            </div>
+
+            <!-- WATER LOGGING BUTTONS -->
+            <div class="grid grid-cols-2 gap-2">
+              <button onclick="addWater(250)" class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/30 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-plus text-[10px]"></i> 250ml Glass
+              </button>
+              <button onclick="addWater(500)" class="bg-sky-500/20 hover:bg-sky-500/30 text-sky-300 border border-sky-500/30 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-plus text-[10px]"></i> 500ml Bottle
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-slate-700/60">
+          <a href="https://www.mohap.gov.ae" target="_blank" rel="noopener noreferrer" class="text-[11px] text-slate-400 hover:text-sky-400 flex items-center gap-1">
+            <i class="fa-solid fa-circle-info"></i> Standard endorsed by Ministry of Health & Prevention <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FIRST AID & SYMPTOM COMPARISON MATRIX -->
+    <div id="first-aid" class="bg-slate-800/60 border border-slate-700/60 rounded-3xl p-6 sm:p-8 space-y-6">
+      <div class="flex flex-wrap justify-between items-center gap-4 border-b border-slate-700/60 pb-4">
+        <div>
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-kit-medical text-rose-500"></i> Emergency Heat Illness Symptom Matrix
+          </h2>
+          <p class="text-xs text-slate-400">Quickly identify and respond to Heat Exhaustion vs. Life-Threatening Heat Stroke.</p>
+        </div>
+        <a href="https://www.dha.gov.ae" target="_blank" rel="noopener noreferrer" class="text-xs text-amber-400 hover:underline flex items-center gap-1">
+          Dubai Health Authority (DHA) Guidelines <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- HEAT EXHAUSTION -->
+        <div class="bg-slate-900/70 border border-amber-500/30 rounded-2xl p-6 space-y-4">
+          <div class="flex justify-between items-center">
+            <h3 class="text-lg font-bold text-amber-400 flex items-center gap-2">
+              <i class="fa-solid fa-triangle-exclamation"></i> Heat Exhaustion
+            </h3>
+            <span class="text-[10px] uppercase font-extrabold bg-amber-500/20 text-amber-400 px-2.5 py-1 rounded-full border border-amber-500/30">Urgent Action Required</span>
+          </div>
+
+          <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside">
+            <li>Heavy sweating & cool, pale, clammy skin</li>
+            <li>Fast, weak pulse & muscle cramps</li>
+            <li>Dizziness, lightheadedness, or fainting</li>
+            <li>Nausea, vomiting, or persistent headaches</li>
+          </ul>
+
+          <div class="bg-amber-950/40 border border-amber-500/20 p-3 rounded-xl text-xs space-y-1">
+            <span class="font-bold text-amber-300">Immediate Action:</span>
+            <p class="text-slate-300">Move person to shaded/AC room, sip cool water/electrolytes, unbutton tight clothing, apply cold compresses.</p>
+          </div>
+        </div>
+
+        <!-- HEAT STROKE -->
+        <div class="bg-slate-900/70 border border-rose-500/40 rounded-2xl p-6 space-y-4 relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-2 shrink-0 h-full bg-rose-600"></div>
+          <div class="flex justify-between items-center">
+            <h3 class="text-lg font-bold text-rose-500 flex items-center gap-2">
+              <i class="fa-solid fa-skull-crossbones"></i> Heat Stroke (CRITICAL)
+            </h3>
+            <span class="text-[10px] uppercase font-extrabold bg-rose-500/20 text-rose-400 px-2.5 py-1 rounded-full border border-rose-500/30">Call 998 Immediately</span>
+          </div>
+
+          <ul class="text-xs text-slate-300 space-y-2 list-disc list-inside">
+            <li>High body temperature (above 39.5°C)</li>
+            <li>Hot, red, dry, or damp skin (lack of sweating)</li>
+            <li>Rapid, strong pulse & severe confusion/slurred speech</li>
+            <li>Loss of consciousness, seizures, or coma</li>
+          </ul>
+
+          <div class="bg-rose-950/40 border border-rose-500/30 p-3 rounded-xl text-xs space-y-2">
+            <span class="font-bold text-rose-300">Emergency Protocol:</span>
+            <p class="text-slate-300">Call **998 Ambulance** instantly. Do NOT give fluids if unconscious. Cool the body using ice packs on neck, armpits, and groin.</p>
+            <a href="tel:998" class="inline-flex items-center gap-2 text-rose-400 font-bold underline hover:text-rose-300 pt-1">
+              <i class="fa-solid fa-phone"></i> Dial 998 Ambulance
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIRECT OFFICIAL GOVERNMENT & HEALTH PORTALS DIRECTORY -->
+    <div id="portals" class="bg-slate-800/60 border border-slate-700/60 rounded-3xl p-6 sm:p-8 space-y-6">
+      <div class="border-b border-slate-700/60 pb-4">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-landmark text-emerald-400"></i> UAE Official Government & Health Resources
+        </h2>
+        <p class="text-xs text-slate-400">Direct external portals for regulatory compliance, reporting, and weather updates.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+        <!-- MOHRE -->
+        <a href="https://www.mohre.gov.ae" target="_blank" rel="noopener noreferrer" class="group bg-slate-900/60 border border-slate-700/60 p-4 rounded-2xl hover:border-amber-400/50 transition flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-lg group-hover:scale-110 transition">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+            <h3 class="font-bold text-sm text-white group-hover:text-amber-400 transition">MoHRE Portal</h3>
+            <p class="text-[11px] text-slate-400">Ministry of Human Resources & Emiratisation outdoor regulations.</p>
+          </div>
+          <span class="text-[10px] font-semibold text-amber-400 flex items-center gap-1 pt-4">
+            Visit mohre.gov.ae <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </span>
+        </a>
+
+        <!-- NCM WEATHER -->
+        <a href="https://www.ncm.ae" target="_blank" rel="noopener noreferrer" class="group bg-slate-900/60 border border-slate-700/60 p-4 rounded-2xl hover:border-sky-400/50 transition flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/30 flex items-center justify-center text-sky-400 text-lg group-hover:scale-110 transition">
+              <i class="fa-solid fa-cloud-sun-rain"></i>
+            </div>
+            <h3 class="font-bold text-sm text-white group-hover:text-sky-400 transition">NCM Weather</h3>
+            <p class="text-[11px] text-slate-400">National Center of Meteorology live radar, heat warnings & alerts.</p>
+          </div>
+          <span class="text-[10px] font-semibold text-sky-400 flex items-center gap-1 pt-4">
+            Visit ncm.ae <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </span>
+        </a>
+
+        <!-- ADPHC -->
+        <a href="https://www.adphc.gov.ae" target="_blank" rel="noopener noreferrer" class="group bg-slate-900/60 border border-slate-700/60 p-4 rounded-2xl hover:border-emerald-400/50 transition flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg group-hover:scale-110 transition">
+              <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <h3 class="font-bold text-sm text-white group-hover:text-emerald-400 transition">ADPHC Health</h3>
+            <p class="text-[11px] text-slate-400">Abu Dhabi Public Health Centre occupational heat safety programs.</p>
+          </div>
+          <span class="text-[10px] font-semibold text-emerald-400 flex items-center gap-1 pt-4">
+            Visit adphc.gov.ae <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </span>
+        </a>
+
+        <!-- DUBAI MUNICIPALITY / EHS -->
+        <a href="https://www.dm.gov.ae" target="_blank" rel="noopener noreferrer" class="group bg-slate-900/60 border border-slate-700/60 p-4 rounded-2xl hover:border-purple-400/50 transition flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-lg group-hover:scale-110 transition">
+              <i class="fa-solid fa-shield-cat"></i>
+            </div>
+            <h3 class="font-bold text-sm text-white group-hover:text-purple-400 transition">Dubai Health Safety</h3>
+            <p class="text-[11px] text-slate-400">Dubai Municipality Safety & Health Enforcement Division.</p>
+          </div>
+          <span class="text-[10px] font-semibold text-purple-400 flex items-center gap-1 pt-4">
+            Visit dm.gov.ae <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </span>
+        </a>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-950 border-t border-slate-800 py-8 px-4 sm:px-6 lg:px-8 text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
+      <div>
+        <p class="font-bold text-slate-300">UAE Heat Safety & Health Portal</p>
+        <p>Information compiled in compliance with UAE Federal Decrees and MoHRE Guidelines.</p>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a href="https://www.mohre.gov.ae" target="_blank" class="hover:text-amber-400 transition">MoHRE</a>
+        <a href="https://www.mohap.gov.ae" target="_blank" class="hover:text-amber-400 transition">MoHAP</a>
+        <a href="https://www.ncm.ae" target="_blank" class="hover:text-amber-400 transition">NCM Weather</a>
+        <a href="tel:600590000" class="text-amber-400 font-bold hover:underline">MoHRE Call Center: 600 590000</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SOS MODAL -->
+  <div id="sos-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-rose-500/50 rounded-3xl max-w-lg w-full p-6 space-y-6 shadow-2xl relative">
+      <button onclick="toggleSOSModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+        <div class="p-3 bg-rose-500/20 text-rose-500 rounded-2xl border border-rose-500/30 text-xl">
+          <i class="fa-solid fa-phone-volume"></i>
+        </div>
+        <div>
+          <h3 class="text-lg font-extrabold text-white">UAE Emergency Helplines</h3>
+          <p class="text-xs text-slate-400">Tap to call direct emergency hotlines in the United Arab Emirates</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <a href="tel:998" class="bg-rose-600 hover:bg-rose-500 text-white p-4 rounded-2xl flex items-center gap-3 transition">
+          <i class="fa-solid fa-truck-medical text-2xl"></i>
+          <div>
+            <div class="text-xl font-black">998</div>
+            <div class="text-[10px] uppercase font-semibold text-rose-200">National Ambulance</div>
+          </div>
+        </a>
+
+        <a href="tel:999" class="bg-slate-800 hover:bg-slate-700 text-white p-4 rounded-2xl flex items-center gap-3 border border-slate-700 transition">
+          <i class="fa-solid fa-shield-halved text-2xl text-amber-400"></i>
+          <div>
+            <div class="text-xl font-black">999</div>
+            <div class="text-[10px] uppercase font-semibold text-slate-400">Police Emergency</div>
+          </div>
+        </a>
+
+        <a href="tel:600590000" class="bg-slate-800 hover:bg-slate-700 text-white p-4 rounded-2xl flex items-center gap-3 border border-slate-700 transition sm:col-span-2">
+          <i class="fa-solid fa-headset text-2xl text-sky-400"></i>
+          <div>
+            <div class="text-lg font-bold">600 590000</div>
+            <div class="text-[10px] uppercase font-semibold text-slate-400">MoHRE Labor Helpline & Midday Ban Reporting</div>
+          </div>
+        </a>
+      </div>
+
+      <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-400 space-y-1">
+        <p class="font-bold text-slate-200">Emergency Protocol for Heat Collapse:</p>
+        <p>1. Move victim to shade/air conditioning immediately.</p>
+        <p>2. Call **998** and state location clearly.</p>
+        <p>3. Apply ice packs under armpits, neck, and groin while waiting.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIOLATION REPORT MODAL -->
+  <div id="report-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-3xl max-w-lg w-full p-6 space-y-6 shadow-2xl relative">
+      <button onclick="closeReportModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-xl">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="border-b border-slate-800 pb-3">
+        <h3 class="text-lg font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-bullhorn text-amber-400"></i> Report Midday Ban Violation
+        </h3>
+        <p class="text-xs text-slate-400">Reports are routed to official MoHRE compliance channels.</p>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Worksite Location / Emirate</label>
+          <input type="text" placeholder="e.g. Al Quoz Industrial 3, Dubai" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white outline-none focus:border-amber-400">
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Violation Details</label>
+          <textarea rows="3" placeholder="Describe outdoor work during prohibited hours (12:30 PM - 3:00 PM)..." class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-white outline-none focus:border-amber-400"></textarea>
+        </div>
+
+        <div class="bg-amber-500/10 border border-amber-500/20 p-3 rounded-xl text-amber-300 text-[11px]">
+          <i class="fa-solid fa-info-circle"></i> You can also report directly via the official <a href="https://www.mohre.gov.ae" target="_blank" class="underline font-bold">MoHRE Smart App</a> or hotline **600 590000**.
+        </div>
+
+        <button onclick="submitViolation()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 py-3 rounded-xl font-bold transition">
+          Submit Report to MoHRE Portal Link
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // HYDRATION CALCULATOR LOGIC
+    let currentWater = 1250;
+    let targetWater = 3500;
+
+    function updateHydrationTarget() {
+      const weight = parseFloat(document.getElementById('user-weight').value) || 70;
+      // Formula: Weight * 45ml for extreme summer climate
+      targetWater = Math.round(weight * 50);
+      renderHydration();
+    }
+
+    function addWater(amount) {
+      currentWater += amount;
+      renderHydration();
+    }
+
+    function renderHydration() {
+      const percentage = Math.min(Math.round((currentWater / targetWater) * 100), 100);
+      document.getElementById('hydration-count-text').innerText = `${currentWater} / ${targetWater} ml (${percentage}%)`;
+      document.getElementById('hydration-progress-bar').style.width = `${percentage}%`;
+    }
+
+    // HEAT INDEX CALCULATOR LOGIC
+    function calculateHeatIndex() {
+      const T = parseFloat(document.getElementById('temp-input').value);
+      const RH = parseFloat(document.getElementById('humidity-input').value);
+
+      document.getElementById('temp-val').innerText = `${T}°C`;
+      document.getElementById('humidity-val').innerText = `${RH}%`;
+
+      // Heat Index Approximation Equation
+      let HI = T + 0.33 * (RH / 100 * 6.105 * Math.exp((17.27 * T) / (237.7 + T))) - 4;
+      HI = Math.round(HI);
+
+      document.getElementById('computed-heat-index').innerText = `${HI}°C`;
+
+      const badge = document.getElementById('risk-category-badge');
+      const desc = document.getElementById('risk-desc');
+      const ratio = document.getElementById('work-rest-ratio');
+
+      if (HI < 32) {
+        badge.innerText = "CAUTION";
+        badge.className = "text-sm font-bold py-1 px-3 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 inline-block";
+        desc.innerText = "Fatigue possible with prolonged exposure";
+        ratio.innerText = "50m Work / 10m Rest";
+      } else if (HI >= 32 && HI < 41) {
+        badge.innerText = "EXTREME CAUTION";
+        badge.className = "text-sm font-bold py-1 px-3 rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30 inline-block";
+        desc.innerText = "Sunstroke or heat cramps possible";
+        ratio.innerText = "45m Work / 15m Rest";
+      } else if (HI >= 41 && HI < 54) {
+        badge.innerText = "DANGER";
+        badge.className = "text-sm font-bold py-1 px-3 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30 inline-block";
+        desc.innerText = "Heat exhaustion likely with activity";
+        ratio.innerText = "30m Work / 30m Rest";
+      } else {
+        badge.innerText = "EXTREME DANGER";
+        badge.className = "text-sm font-bold py-1 px-3 rounded-full bg-purple-500/20 text-purple-400 border border-purple-500/30 inline-block";
+        desc.innerText = "Heat stroke highly imminent";
+        ratio.innerText = "STOP Outdoor Work";
+      }
+    }
+
+    function updateEmiratePreset() {
+      const preset = document.getElementById('emirate-select').value;
+      if (preset === 'dubai') {
+        document.getElementById('temp-input').value = 38;
+        document.getElementById('humidity-input').value = 55;
+      } else if (preset === 'abudhabi') {
+        document.getElementById('temp-input').value = 40;
+        document.getElementById('humidity-input').value = 60;
+      } else if (preset === 'sharjah') {
+        document.getElementById('temp-input').value = 39;
+        document.getElementById('humidity-input').value = 65;
+      } else if (preset === 'alain') {
+        document.getElementById('temp-input').value = 44;
+        document.getElementById('humidity-input').value = 30;
+      }
+      calculateHeatIndex();
+    }
+
+    // MIDDAY BAN REAL-TIME TIMER
+    function updateBanTimer() {
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const seconds = now.getSeconds();
+
+      const badge = document.getElementById('ban-status-badge');
+      const timer = document.getElementById('ban-countdown-timer');
+      const label = document.getElementById('ban-timer-label');
+
+      // Check if current time is between 12:30 PM (12.5) and 3:00 PM (15.0)
+      const currentDecimal = hours + minutes / 60;
+
+      if (currentDecimal >= 12.5 && currentDecimal < 15.0) {
+        badge.className = "py-2 px-4 rounded-xl text-sm font-black flex items-center justify-center gap-2 bg-rose-500/20 text-rose-400 border border-rose-500/30 animate-pulse";
+        badge.innerHTML = `<i class="fa-solid fa-ban"></i> MIDDAY WORK BAN ACTIVE NOW`;
+        
+        // Target: 3:00 PM
+        let target = new Date();
+        target.setHours(15, 0, 0, 0);
+        let diff = Math.floor((target - now) / 1000);
+
+        let h = Math.floor(diff / 3600);
+        let m = Math.floor((diff % 3600) / 60);
+        let s = diff % 60;
+
+        timer.innerText = `${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
+        label.innerText = "Until Ban Lifts at 3:00 PM";
+      } else {
+        badge.className = "py-2 px-4 rounded-xl text-sm font-black flex items-center justify-center gap-2 bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+        badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> Outdoor Work Permitted`;
+
+        // Target: Next 12:30 PM
+        let target = new Date();
+        if (currentDecimal >= 15.0) {
+          target.setDate(target.getDate() + 1);
+        }
+        target.setHours(12, 30, 0, 0);
+        let diff = Math.floor((target - now) / 1000);
+
+        let h = Math.floor(diff / 3600);
+        let m = Math.floor((diff % 3600) / 60);
+        let s = diff % 60;
+
+        timer.innerText = `${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
+        label.innerText = "Until Next Ban Period (12:30 PM)";
+      }
+    }
+
+    // MODAL HANDLERS
+    function toggleSOSModal() {
+      const modal = document.getElementById('sos-modal');
+      modal.classList.toggle('hidden');
+      modal.classList.toggle('flex');
+    }
+
+    function openReportModal() {
+      const modal = document.getElementById('report-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeReportModal() {
+      const modal = document.getElementById('report-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function submitViolation() {
+      alert("Opening MoHRE Official Reporting Portal...");
+      window.open("https://www.mohre.gov.ae", "_blank");
+      closeReportModal();
+    }
+
+    // INITIALIZATION
+    setInterval(updateBanTimer, 1000);
+    updateBanTimer();
+    calculateHeatIndex();
+    updateHydrationTarget();
+  </script>
 </body>
 </html>
