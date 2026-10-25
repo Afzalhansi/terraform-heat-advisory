@@ -8,8 +8,7 @@ through Infrastructure as Code, no manual console clicking.
 Deploys a single-page **UAE Heat Safety Advisory** site, hosted on an S3 bucket
 configured for static website hosting.
 
-Live URL: `http://uae-heat-advisory-afzal.s3-website.eu-north-1.amazonaws.com/`
-
+Live URL: [UAE Heat Safety Advisory](http://uae-heat-advisory-afzal.s3-website.eu-north-1.amazonaws.com)
 ## Architecture
 
 ```
