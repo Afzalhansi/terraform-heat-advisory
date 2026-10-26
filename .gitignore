@@ -2,3 +2,7 @@
 *.tfstate
 *.tfstate.backup
 crash.log
+node_modules/
+tailwindcss-linux-x64
+.terraform/
+*.tfstate*

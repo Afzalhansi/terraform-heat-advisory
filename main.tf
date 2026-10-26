@@ -61,3 +61,11 @@ resource "aws_s3_object" "index" {
 output "website_url" {
   value = aws_s3_bucket_website_configuration.heat_advisory.website_endpoint
 }
+
+resource "aws_s3_object" "style" {
+  bucket       = aws_s3_bucket.heat_advisory.id
+  key          = "style.css"
+  source       = "style.css"
+  content_type = "text/css"
+  etag         = filemd5("style.css")
+}
